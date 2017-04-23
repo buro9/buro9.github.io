@@ -77,7 +77,7 @@ $(document).ready(function() {
     $('#constituency').on('change', updatePage);
 
     // Geographic location detection
-    var geoCB = function(position) {
+    var geoSuccess = function(position) {
         if (position.coords) {
             var longitude = position.coords.longitude;
             var latitude = position.coords.latitude;
@@ -108,9 +108,15 @@ $(document).ready(function() {
         }
     }
 
+    var geoOptions = {
+        timeout: 10 * 1000
+    }
+
     function getLocation() {
+        console.log("getLocation")
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(geoCB, geoErr);
+            console.log("permission granted")
+            navigator.geolocation.getCurrentPosition(geoSuccess, geoErr, geoOptions);
         }
     }
     updatePage();
