@@ -94,9 +94,23 @@ $(document).ready(function() {
         }
     }
 
+    var geoErr = function(error) {
+        switch (error.code) {
+            case error.PERMISSION_DENIED:
+                console.log("geo permission denied")
+                break;
+            case error.POSITION_UNAVAILABLE:
+                console.log("geo position unavailable")
+                break;
+            case error.TIMEOUT:
+                console.log("geo timeout")
+                break;
+        }
+    }
+
     function getLocation() {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(geoCB);
+            navigator.geolocation.getCurrentPosition(geoCB, geoErr);
         }
     }
     updatePage();
