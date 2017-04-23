@@ -109,7 +109,8 @@ $(document).ready(function() {
     }
 
     var geoOptions = {
-        timeout: 10 * 1000
+        timeout: 10 * 1000,
+        enableHighAccuracy: false
     }
 
     function getLocation() {
